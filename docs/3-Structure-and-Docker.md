@@ -1,6 +1,6 @@
 # Early Versions of the Structure
 
-Before Writing this I had already structured my directories so these may be subject to change depending on how I develop from here on out.
+Before writing this guide, I had already established my initial directory layout. This structure is subject to change as my server evolves, but it provides a solid starting point.
 
 <img src="/assets/3-structure-docker/early structure.JPG" alt="Current" width="600" />
 
@@ -15,12 +15,14 @@ I am still experimenting with the structuring of my project but for now I am sat
 1. I had already installed the required dependencies so I just need to download the packages from the Docker's repository
 
 ```bash
-#Ensures the packages are trusted
+    #Ensures the packages are trusted
     sudo install -m 0755 -d /etc/apt/keyrings
 
+    #Download and import Docker's official GPG key
     curl -fsSL https://download.docker.com/linux/debian/gpg | \
     sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 
+    #Set appropriate read permissions for the key
     sudo chmod a+r /etc/apt/keyrings/docker.gpg
 ```
 
@@ -60,3 +62,5 @@ I am still experimenting with the structuring of my project but for now I am sat
 ```bash
     docker run hello-world
 ```
+---
+
