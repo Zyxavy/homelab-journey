@@ -20,7 +20,7 @@ Once downloaded, flash the Debian ISO to your USB drive using your preferred too
 
 2. Choose the USB flash drive as the boot source.
 
-3. Proceed with the installation. The **Graphical Install** option is very intuitive and recommended for beginners. 
+3. Proceed with the installation. The **Graphical Install** relatively easy to understand. 
 
 4. During disk partitioning, I chose to use **LVM (Logical Volume Manager)** so that the partitions can be resized later using tools like **GParted**.
 
@@ -32,7 +32,6 @@ My partition layout:
 5. It will ask for what to install. in my case I dont need a desktop environment so I went ahead and just installed an SSH server and standard system utilities.
 
 ---
-
 
 ## Post-installation.
 
