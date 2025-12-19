@@ -1,4 +1,4 @@
-# Early Versions of the Structure
+# Early Version of the Structure
 
 Before writing this guide, I had already established my initial directory layout. This structure is subject to change as my server evolves, but it provides a solid starting point.
 
@@ -6,7 +6,7 @@ Before writing this guide, I had already established my initial directory layout
 
 ---
 
-I am still experimenting with the structuring of my project but for now I am satisfied with this. `docker/` will house the media folder as well as the services that are being used. since I plan on using `jellyfin` and `nextcloud`, having a separate `media/` directory would be nice. in `home-server/` will contain individual service folders and their respective `docker-compose.yml` and `configs/`
+I am still experimenting with the structuring of my project but for now I am satisfied with this. `docker/` will house the media folder as well as the services that are being used. since I plan on using `jellyfin` and `nextcloud`, having a separate `media/` directory would be nice. `home-server/` will contain individual service folders and their respective `docker-compose.yml` and `configs/`
 
 ---
 
@@ -39,8 +39,8 @@ I am still experimenting with the structuring of my project but for now I am sat
 ```bash
     sudo apt update -y
 
-    sudo apt install -y docker-ce docker-ce-cli containerd.io 
-        docker-buildx-plugin docker-compose-plugin
+    sudo apt install -y docker-ce docker-ce-cli containerd.io \
+    docker-buildx-plugin docker-compose-plugin
 ```
 
 4. After that verify the status of Docker

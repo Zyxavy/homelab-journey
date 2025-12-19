@@ -72,6 +72,75 @@ My partition layout:
 ```bash
     sudo apt install ca-certificates curl gnupg lsb-release git ufw fail2ban htop ncdu net-tools iproute2 unzip zip
 ```
+---
+
+### Configuring a Static IP Address
+
+By default, most Debian installations obtain an IP address via **DHCP**, which means the IP can change over time.  
+For a server a **static IP address** is recommended because it:
+
+- Prevents IP changes after reboots
+- Ensures services remain reachable
+- Required for DNS servers (Pi-hole)
+
+This configuration is done entirely on the server side, without relying on router-based DHCP reservations.
+
+1. First, determine the name of your active network interface. For me it is wlan0.
+
+```bash
+    ip a
+```
+
+2. You will need the following information:
+    - Static IP: 192.168.0.150 <-- My desired IP Address for my server
+    - Gateway: 192.168.0.1 <-- usually your router
+    - Subnet mask: 255.255.255.0
+    - DNS servers:
+        - 1.1.1.1
+        - 8.8.8.8
+
+3. Edit the network configuration through nano.
+```bash
+    sudo nano /etc/network/interfaces.d/wlan0
+```
+
+4. Add the configuration below. **NOTE:** Make sure that the interface name, IP address and gateway is correct.
+
+```bash
+    auto wlan0
+    iface wlan0 inet static
+    address 192.168.0.150
+    netmask 255.255.255.0
+    gateway 192.168.0.1
+    dns-nameservers 1.1.1.1 8.8.8.8
+
+```
+
+5. Restart the network to apply the changes
+```bash
+    sudo systemctl restart networking
+
+    #if an error occurs, restart the interface
+    sudo ifdown wlan0 && sudo ifup wlan0
+```
+
+6. Verify the static IP and that you are connected to the internet.
+
+```bash
+    #You should see inet 192.168.0.150/24 or your desired IP address
+    ip a show wlan0
+
+    #Test connection
+    ping -c 3 192.168.0.1
+    ping -c 3 google.com
+
+```
+
+7. If it fails you can revert back to DHCP, and add a reservation through your router's admin UI.
+```
+# Edit the config file again and change 'static' back to 'dhcp'
+```
+
 
 ---
 
