@@ -6,7 +6,7 @@ Before writing this guide, I had already established my initial directory layout
 
 ---
 
-I am still experimenting with the structuring of my project but for now I am satisfied with this. docker/ will house the media folder as well as the services that are being used. since I plan on using jellyfin and nextcloud, havaing a separate media/ directory would be nice. in home-server/ will house the services; their docker-compose.yml and their configs/
+I am still experimenting with the structuring of my project but for now I am satisfied with this. `docker/` will house the media folder as well as the services that are being used. since I plan on using `jellyfin` and `nextcloud`, having a separate `media/` directory would be nice. in `home-server/` will contain individual service folders and their respective `docker-compose.yml` and `configs/`
 
 ---
 
