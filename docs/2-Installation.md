@@ -29,7 +29,7 @@ My partition layout:
 - `4 GB` for `swap`
 - Remaining space for `/home`
 
-5. It will ask for what to install. in my case I dont need a desktop environment so I went ahead and just installed an SSH server.
+5. It will ask for what to install. in my case I dont need a desktop environment so I went ahead and just installed an SSH server and standard system utilities.
 
 ---
 
@@ -66,8 +66,31 @@ My partition layout:
     exit
 ```
 
+### Install various tools and Dependency
+
+ I plan to run most services in Docker for isolation and easier management. Before installing Docker itself, I need to install essential utilities and security tools:
+
+```bash
+    sudo apt install ca-certificates curl gnupg lsb-release git ufw fail2ban htop ncdu net-tools iproute2 unzip zip
+```
+
 ---
 
 - You can follow the official Debian installation guide here: [Debian 13 (Trixie) Installation Manual](https://www.debian.org/releases/trixie/amd64/) 
 
 - Or if you prefer a visual walkthrough, this YouTube tutorial covers the entire process: [Debian 13 Full Installation guide](https://www.youtube.com/watch?v=RjdMbYhjbCs)
+
+---
+
+| Package                | Purpose                                                                 |
+|------------------------|-------------------------------------------------------------------------|
+| **ca-certificates**    | SSL certificates for secure HTTPS connections                           |
+| **curl & gnupg**       | Required to download and verify Docker's repository key                 |
+| **lsb-release**        | Helps identify your Debian version for repository setup                 |
+| **git**                | Version control (for cloning configs and projects)                      |
+| **ufw**                | Uncomplicated Firewall (for basic network security)                     |
+| **fail2ban**           | Blocks brute-force SSH attacks                                          |
+| **htop**               | Interactive process viewer                                              |
+| **ncdu**               | Disk usage analyzer                                                     |
+| **net-tools & iproute2**| Network troubleshooting utilities (`ifconfig`, `ip`, etc.)            |
+| **unzip & zip**        | Archive handling                                                        |
