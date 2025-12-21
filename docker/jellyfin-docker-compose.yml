@@ -1,0 +1,11 @@
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin
+    user: 1000:1000
+    ports:
+      - "8096:8096"
+    volumes:
+      - ./config:/config
+      - /home/zyxary/docker/media:/media
+    restart: unless-stopped

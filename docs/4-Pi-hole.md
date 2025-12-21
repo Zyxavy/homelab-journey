@@ -135,4 +135,3 @@ I explored Unbound mainly for learning purposes, to better understand how DNS re
 ## Why I did this
 - Mainly to block ads on my phones and TV since I can't install an adblocker on those devices.
 - For privacy (when I switch to using Unbound).
-
