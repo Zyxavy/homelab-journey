@@ -57,9 +57,11 @@ I am already satisfied with this setup, but it can be better. I can automate fin
 
 ## What I learned
 - Jellyfin is sufficient for my needs to stream to any of my devices.
+- Running Jellyfin in Docker makes experimentation much safer, since breaking the container doesn’t affect the base system.
 - In order to avoid port conflict, I used Jellyfin's default port.
-- `WinSCP` is the GOAT, though I have heard of `PuTTY` and I might try it.
+- Simple tools like `WinSCP` can drastically improve workflow when managing a remote server.
 
 ## Why I did this
 - This was my original goal, to be able to watch movies without constant buffering, and also because I don't have a Netflix subscription.
+- This project allowed me to learn how services can be deployed, managed, and maintained on a server.
 - Expose myself to managing, maintaining, and building a server that will be used by me.

@@ -131,6 +131,7 @@ I explored Unbound mainly for learning purposes, to better understand how DNS re
 - Some ads may not get blocked so it is recommended to use an adblocker alongside Pi-hole.
 - If my main concern is privacy(for now it isn't), I should be using Unbound. but due to my setup I will be using Cloudflare and Google DNS for now.
 - If I need to block ads more aggressively, I can always add more list to my block lists.
+- Though aggressive blocking isn’t always better, adding too many blocklists can break legitimate sites, so it’s better to start small and adjust over time.
 
 ## Why I did this
 - Mainly to block ads on my phones and TV since I can't install an adblocker on those devices.

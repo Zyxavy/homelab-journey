@@ -132,8 +132,9 @@ This configuration is done entirely on the server side, without relying on route
 
 ## What I learned:
 
-- LVM ensures that if I don't make the same mistake of mount bindng again.
-- Wi-Fi works, but this should only be a temporary measure.
+- LVM ensures that I don't make the same mistake of mount bindng again. It's a much safer option than relying on bind mounts or fixed partitions.
+- A minimal install of SSH + system utilities only, keeps resource usage low and avoids unnecessary garbage on my server.
+- Wi-Fi works for now, but it has risk during network changes. Switching to Ethernet is a must once my physical setup allows it.
 
 ---
 
