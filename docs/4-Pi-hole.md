@@ -64,30 +64,31 @@ After setting up Pi-hole, I log into my router's admin web UI, in my case it is 
 
 <img src="/assets/4-pihole/network-setup-2.png" alt="router web ui" width="600" />
 
----
+
 
 At this point, Pi-hole was working as expected. Even though it doesn’t block every ad, the overall browsing experience was better across all devices on my network.
 
-
+---
 ## Adding Blocklist and Allow-list
 
 In Pi-hole I can add more DNS blocklist to block more ranges of ads, I will be using [hagezi](https://github.com/hagezi/dns-blocklists?tab=readme-ov-file) block lists.
 
----
+
 
 <img src="/assets/4-pihole/pi-hole.png" alt="pihole web ui" width="600" />
 
 <img src="/assets/4-pihole/pi hole 2.png" alt="pihole web ui" width="600" />
 
----
+
 
 After adding my desired block list I just need to update it by running `pihole -g` or through the web UI.
 
----
+
 <img src="/assets/4-pihole/pihole update.png" alt="pihole web ui" width="600" />
----
+
 That should be enough, I could add more, but more isn't necessarily better.
 
+---
 
 ## Using Recursive DNS
 
@@ -97,7 +98,7 @@ To sum up, a recursive DNS starts from scratch and queries multiple DNS servers 
 
 Unbound is an open-source recursive DNS resolver, this is what performs the recursive lookups.
 
-- How it works is (my device) -> (Pi-hole) -> (Unbound) -> Internet DNS hierchy
+- How it works is (my device) -> (Pi-hole) -> (Unbound) -> Internet DNS hierarchy
 
 ***The benefits of this are:***
 - No need for third-party DNS provider like cloudflare and google.
@@ -113,9 +114,9 @@ Though this might be slower for first-time searches.
 
 3. Then I run it `docker compose up -d` and modify my Pi-hole dns in the web UI to point to `127.0.0.1#53`.
 
----
+
 <img src="/assets/4-pihole/pihole dns.png" alt="pihole dns ui" width="600" />
----
+
 
 - For now I will be using `1.1.1.1` and `8.8.8.8` since they tend to be much faster for first time queries, but I will switch to unbound in the future.
 
@@ -133,5 +134,5 @@ I explored Unbound mainly for learning purposes, to better understand how DNS re
 
 ## Why I did this
 - Mainly to block ads on my phones and TV since I can't install an adblocker on those devices.
-- For privacy(when I switch to using Unbound).
+- For privacy (when I switch to using Unbound).
 
