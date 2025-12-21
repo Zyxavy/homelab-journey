@@ -19,7 +19,7 @@ I am still refining how I organize my server files, but this structure works wel
 
 ## What is Pi-hole
 
-Pi-hole acts as a network-wide ad blocker, so instead of installing ad blockers on every device in your network, Pi-hole filters ads and trackers at the DNS level. Though I found that some ads are still apearing, they are not as persistent as before and YouTube ads are not entirely blocked.
+Pi-hole acts as a network-wide ad blocker, so instead of installing ad blockers on every device in your network, Pi-hole filters ads and trackers at the DNS level. Though I found that some ads are still appearing, they are not as persistent as before and YouTube ads are not entirely blocked.
 
 ---
 
@@ -66,4 +66,72 @@ After setting up Pi-hole, I log into my router's admin web UI, in my case it is 
 
 ---
 
+At this point, Pi-hole was working as expected. Even though it doesn’t block every ad, the overall browsing experience was better across all devices on my network.
+
+
 ## Adding Blocklist and Allow-list
+
+In Pi-hole I can add more DNS blocklist to block more ranges of ads, I will be using [hagezi](https://github.com/hagezi/dns-blocklists?tab=readme-ov-file) block lists.
+
+---
+
+<img src="/assets/4-pihole/pi-hole.png" alt="pihole web ui" width="600" />
+
+<img src="/assets/4-pihole/pi hole 2.png" alt="pihole web ui" width="600" />
+
+---
+
+After adding my desired block list I just need to update it by running `pihole -g` or through the web UI.
+
+---
+<img src="/assets/4-pihole/pihole update.png" alt="pihole web ui" width="600" />
+---
+That should be enough, I could add more, but more isn't necessarily better.
+
+
+## Using Recursive DNS
+
+To sum up, a recursive DNS starts from scratch and queries multiple DNS servers in a hierarchical fashion until it gets a final answer, rather than asking a single upstream server that already has the answer.
+
+### Unbound
+
+Unbound is an open-source recursive DNS resolver, this is what performs the recursive lookups.
+
+- How it works is (my device) -> (Pi-hole) -> (Unbound) -> Internet DNS hierchy
+
+***The benefits of this are:***
+- No need for third-party DNS provider like cloudflare and google.
+- May be a little bit faster since after caching, responses comes directly from my server.
+
+Though this might be slower for first-time searches.
+
+## Installing and Using Unbound
+
+1. I started by creating a directory for unbound in my `~/docker/home-server/unbound`. inside is a single `docker-compose.yml`.
+
+2. For the docker-compose file see [docker-compose.yml](/docker/unbound-docker-compose.yml).
+
+3. Then I run it `docker compose up -d` and modify my Pi-hole dns in the web UI to point to `127.0.0.1#53`.
+
+---
+<img src="/assets/4-pihole/pihole dns.png" alt="pihole dns ui" width="600" />
+---
+
+- For now I will be using `1.1.1.1` and `8.8.8.8` since they tend to be much faster for first time queries, but I will switch to unbound in the future.
+
+I explored Unbound mainly for learning purposes, to better understand how DNS resolution works beyond using public resolvers.
+
+---
+
+# Summary
+
+## What I learned
+- Pi-hole is great for blocking ads in my network, though it requires a bit of setup, it's definitely worth it.
+- Some ads may not get blocked so it is recommended to use an adblocker alongside Pi-hole.
+- If my main concern is privacy(for now it isn't), I should be using Unbound. but due to my setup I will be using Cloudflare and Google DNS for now.
+- If I need to block ads more aggressively, I can always add more list to my block lists.
+
+## Why I did this
+- Mainly to block ads on my phones and TV since I can't install an adblocker on those devices.
+- For privacy(when I switch to using Unbound).
+

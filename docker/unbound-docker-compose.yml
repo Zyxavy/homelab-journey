@@ -1,0 +1,8 @@
+services:
+  unbound:
+    image: mvance/unbound:latest
+    container_name: unbound
+    ports:
+      - "5353:53/udp"
+      - "5353:53/tcp"
+    restart: unless-stopped
